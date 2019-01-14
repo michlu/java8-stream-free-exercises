@@ -150,7 +150,7 @@ public class WorkShopTest {
                 .currency(Currency.PLN)
                 .build();
 
-        assertEquals(new BigDecimal("1.00"), workShop.getAccountAmountInPLN(accountWithOneZloty));
+        assertEquals(new BigDecimal("1.0"), workShop.getAccountAmountInPLN(accountWithOneZloty)); // 1.00
 
         final Account accountWithOneDolar = Account.builder()
                 .amount(new BigDecimal("1.0"))
@@ -158,6 +158,20 @@ public class WorkShopTest {
                 .build();
 
         assertEquals(new BigDecimal("3.720"), workShop.getAccountAmountInPLN(accountWithOneDolar));
+
+        final Account accountWithOneEuro = Account.builder()
+                .amount(new BigDecimal("3.0"))
+                .currency(Currency.EUR)
+                .build();
+
+        assertEquals(new BigDecimal("12.690"), workShop.getAccountAmountInPLN(accountWithOneEuro));
+
+        final Account accountWithOneFranc = Account.builder()
+                .amount(new BigDecimal("5.0"))
+                .currency(Currency.CHF)
+                .build();
+
+        assertEquals(new BigDecimal("19.150"), workShop.getAccountAmountInPLN(accountWithOneFranc));
     }
 
     /**
@@ -189,7 +203,7 @@ public class WorkShopTest {
     @Test
     public void shouldReturnWomanWhichAreOlderThan50() {
         final List<String> oldWomam = workShop.getOldWoman(50);
-        assertEquals("[Karol]", oldWomam.toString());
+        assertEquals("[Zosia]", oldWomam.toString());
     }
 
     /**
